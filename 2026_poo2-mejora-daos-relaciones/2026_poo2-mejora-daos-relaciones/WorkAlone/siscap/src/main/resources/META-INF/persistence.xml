@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+  <!-- El nombre de la unidad de persistencia es usado para generar el EntityManagerFactory -->
+  <persistence-unit name="siscapPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <shared-cache-mode>NONE</shared-cache-mode>
+
+    <!-- Solo clases que existen en src: EclipseLink falla al construir la
+         fábrica si alguna de estas rutas no existe -->
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.convertidores.LocalDateAttributeConverter</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.BaseDeDatos</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Bitacora</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Certificado</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Curso</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Framework</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Inscripcion</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Persona</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.ProgLanguages</class>
+    <class>mx.edu.uaz.ingsoft.poo2.modelo.entidades.Tema</class>
+
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:capacitaciones.db?foreign_keys=on"/>
+
+      <!-- Evita que EclipseLink intente usar sintaxis de Oracle/MySQL -->
+      <!-- Al poner "Auto" o "Derby", EclipseLink usa un generador DDL más genérico -->
+      <!--property name="eclipselink.target-database" value="Auto"/-->
+      <!-- Disfrazar a SQLite para que use IDENTITY y no busque la tabla SEQUENCE -->
+      <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.MySQLPlatform"/>
+
+
+      <!-- Logs de SQL detallados -->
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.parameters" value="true"/>
+
+      <!-- Configuración de EclipseLink -->
+      <property name="eclipselink.ddl-generation" value="none"/>
+      <!--"drop-and-create-tables", "create-tables", "create-or-extend-tables", "none"-->
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+    </properties>
+
+  </persistence-unit>
+</persistence>

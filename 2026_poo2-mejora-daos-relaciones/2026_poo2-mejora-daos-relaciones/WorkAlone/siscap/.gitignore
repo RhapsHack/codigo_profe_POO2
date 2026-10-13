@@ -1,0 +1,18 @@
+# Regla del proyecto: a git solo suben el código y 01-Documentacion; el resto es SOLO LOCAL.
+
+# Información generada por la herramienta de IA (notas, planes, decisiones, scripts).
+99-OtherDocs/
+
+# Metadatos locales de la herramienta de IA
+.freebuff/
+98-OldSRC/
+
+# Configuración y especificaciones de la herramienta de IA (SOLO LOCALES)
+.opencode/
+openspec/
+
+# Metadatos locales del IDE
+.idea/
+
+# Artefactos de compilación
+target/
